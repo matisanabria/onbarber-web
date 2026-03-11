@@ -5,34 +5,52 @@
   font-family: 'Inter';
   src: url('/fonts/Inter-Light.woff2') format('woff2');
   font-weight: 300;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/Inter-Regular.woff2') format('woff2');
   font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/Inter-Medium.woff2') format('woff2');
   font-weight: 500;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/Inter-Bold.woff2') format('woff2');
   font-weight: 700;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/Inter-Black.woff2') format('woff2');
   font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/BebasNeue.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
 }
 
 @theme {
   --font-inter: 'Inter', sans-serif;
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --color-brand-yellow: #edb717;
+}
+
+:root {
+  background-color: #1a1a1a;
 }
 
 body {
