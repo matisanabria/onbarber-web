@@ -1,3 +1,86 @@
 ---
-
+const services = [
+  {
+    name: "Corte de Cabello",
+    description: "Estilo personalizado con las últimas tendencias. Tu look, nuestra especialidad.",
+    gradient: "from-amber-500/40 via-brand-yellow/20 to-orange-800/30",
+  },
+  {
+    name: "Barba",
+    description: "Perfilado y afeitado profesional con navaja. Precisión en cada trazo.",
+    gradient: "from-yellow-600/30 via-amber-700/20 to-brand-yellow/10",
+  },
+  {
+    name: "Cejas",
+    description: "Diseño y perfilado de cejas con precisión. El detalle que marca la diferencia.",
+    gradient: "from-orange-600/30 via-brand-yellow/15 to-amber-900/20",
+  },
+];
 ---
+
+<!-- Separador -->
+<div class="w-full px-6">
+  <div class="max-w-5xl mx-auto h-px bg-gradient-to-r from-transparent via-brand-yellow/20 to-transparent"></div>
+</div>
+
+<section id="servicios" class="relative px-6 py-16 md:py-20 overflow-hidden" aria-labelledby="servicios-titulo">
+  <!-- Glows amarillos de fondo (solo desktop) -->
+  <div class="hidden md:block absolute top-1/9 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-brand-yellow/[0.05] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="hidden md:block absolute top-1/5 -left-20 w-[450px] h-[450px] bg-brand-yellow/[0.06] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="hidden md:block absolute top-1/2 -right-20 w-[400px] h-[400px] bg-brand-yellow/[0.05] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="hidden md:block absolute bottom-0 left-1/3 w-[500px] h-[350px] bg-brand-yellow/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="hidden md:block absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-brand-yellow/[0.06] rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <header class="text-center mb-10 md:mb-14">
+      <h2 id="servicios-titulo" class="font-bebas text-3xl font-bold md:text-5xl lg:text-6xl text-white tracking-wider leading-none">
+        Nuestros <span class="text-brand-yellow">Servicios</span>
+      </h2>
+      <p class="mt-4 text-gray-400 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
+        Cortes, barba y cejas con estilo premium. Reservá tu turno y dejá que los profesionales se encarguen.
+      </p>
+    </header>
+
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-6" role="list">
+      {services.map((service) => (
+        <li>
+          <article class="group flex flex-col bg-neutral-900 rounded-lg overflow-hidden border border-white/5 transition-all duration-500 hover:border-brand-yellow/15 hover:-translate-y-1">
+            <!-- Imagen placeholder -->
+            <div class="relative aspect-[4/3] m-2 rounded-md overflow-hidden">
+              <img
+                src="/gradient-placeholder.png"
+                alt=""
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                aria-hidden="true"
+              />
+            </div>
+
+            <!-- Contenido -->
+            <div class="flex flex-col gap-3 px-6 pb-6 pt-2 flex-1">
+              <h3 class="font-inter font-bold text-2xl md:text-3xl text-white leading-tight transition-colors duration-300 group-hover:text-brand-yellow">
+                {service.name}
+              </h3>
+
+              <p class="text-gray-500 text-sm leading-relaxed">
+                {service.description}
+              </p>
+
+              <a
+                href="#reservar"
+                class="inline-flex items-center gap-2 mt-auto pt-4 text-brand-yellow/60 text-sm font-medium tracking-wide transition-all duration-300 group-hover:text-brand-yellow group-hover:gap-3"
+                aria-label={`Reservar turno para ${service.name}`}
+              >
+                Reservar turno
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
