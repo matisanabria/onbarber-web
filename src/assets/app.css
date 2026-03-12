@@ -46,6 +46,16 @@
   --font-inter: 'Inter', sans-serif;
   --font-bebas: 'Bebas Neue', sans-serif;
   --color-brand-yellow: #edb717;
+  --animate-cta-pulse: cta-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes cta-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(237, 183, 23, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(237, 183, 23, 0.45);
+  }
 }
 
 :root {

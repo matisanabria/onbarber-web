@@ -2,15 +2,15 @@
 const services = [
   {
     name: "Corte de Cabello",
-    description: "Estilo personalizado con las últimas tendencias. Tu look, nuestra especialidad.",
+    description: "Mensaje que describa lo que es un corte de cabello.",
   },
   {
     name: "Barba",
-    description: "Perfilado y afeitado profesional con navaja. Precisión en cada trazo.",
+    description: "Mensaje que describa lo que es un servicio de barba.",
   },
   {
     name: "Cejas",
-    description: "Diseño y perfilado de cejas con precisión. El detalle que marca la diferencia.",
+    description: "Mensaje que describa lo que es un servicio de cejas.",
   },
 ];
 ---
@@ -20,7 +20,7 @@ const services = [
   <div class="max-w-5xl mx-auto h-px bg-gradient-to-r from-transparent via-brand-yellow/20 to-transparent"></div>
 </div>
 
-<section id="servicios" class="relative px-6 py-16 md:py-20 overflow-hidden" aria-labelledby="servicios-titulo">
+<section id="servicios" class="relative px-6 py-16 md:py-20 overflow-hidden scroll-mt-20" aria-labelledby="servicios-titulo">
   <!-- Glows amarillos de fondo (solo desktop) -->
   <div class="hidden md:block absolute top-1/9 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-brand-yellow/[0.05] rounded-full blur-3xl pointer-events-none"></div>
   <div class="hidden md:block absolute top-1/5 -left-20 w-[450px] h-[450px] bg-brand-yellow/[0.06] rounded-full blur-3xl pointer-events-none"></div>
@@ -34,8 +34,7 @@ const services = [
         Nuestros <span class="text-brand-yellow">Servicios</span>
       </h2>
       <p class="mt-4 text-gray-400 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
-        Cortes, barba y cejas con estilo premium. Reservá tu turno y dejá que los profesionales se encarguen.
-      </p>
+        Este es un mensaje corto que describe nuestros servicios de forma clara y atractiva.  </p>
     </header>
 
     <ul class="grid grid-cols-1 md:grid-cols-3 gap-6" role="list">
@@ -43,6 +42,7 @@ const services = [
         <li>
           <article class="group flex flex-col bg-neutral-900 rounded-lg overflow-hidden border border-white/5 transition-all duration-500 hover:border-brand-yellow/15 hover:-translate-y-1">
             <!-- Imagen placeholder -->
+            <!-- Minimum 640x480 -->
             <div class="relative aspect-[4/3] m-2 rounded-md overflow-hidden">
               <img
                 src="/gradient-placeholder.png"
