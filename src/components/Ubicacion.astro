@@ -1,5 +1,5 @@
 ---
-const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+const mapsUrl = "https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.8717119,18z/data=!4m6!3m5!1s0x945795a02d523f87:0xc882fdebf3d43038!8m2!3d-27.3318913!4d-55.8711766!16s%2Fg%2F11vbwppp6h";
 ---
 
 <!-- Separador -->
@@ -43,7 +43,7 @@ const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 
       <!-- CTA -->
       <a
-        href="https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.8717119,18z/data=!4m6!3m5!1s0x945795a02d523f87:0xc882fdebf3d43038!8m2!3d-27.3318913!4d-55.8711766!16s%2Fg%2F11vbwppp6h?entry=tts&g_ep=EgoyMDI2MDMxMC4wIPu8ASoASAFQAw%3D%3D&skid=3eba348c-de3b-4748-a928-24ad94bf49ee"
+        href={mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 text-brand-yellow/70 text-sm font-medium hover:text-brand-yellow transition-colors duration-300 w-fit"
@@ -57,20 +57,22 @@ const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 
     <!-- Mapa -->
     <a
-      href="https://maps.app.goo.gl/vWkKeUvQ6cSeLmkT7"
+      href={mapsUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Ver OnBarber en Google Maps"
       class="group relative block rounded-xl overflow-hidden border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.4)] aspect-video lg:aspect-auto lg:h-80"
     >
       <img
-        src={`https://maps.googleapis.com/maps/api/staticmap?center=-27.3318913,-55.8711766&zoom=17&size=800x400&scale=2&maptype=roadmap&markers=color:0xedb717%7C-27.3318913,-55.8711766&style=element:geometry%7Ccolor:0x212121&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x757575&style=element:labels.text.stroke%7Ccolor:0x212121&style=feature:road%7Celement:geometry%7Ccolor:0x383838&style=feature:road.highway%7Celement:geometry%7Ccolor:0x454545&style=feature:water%7Celement:geometry%7Ccolor:0x000000&key=${apiKey}`}
+        src="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/map.webp"
         alt="Mapa de ubicación de OnBarber en Encarnación"
         class="w-full h-full object-cover"
         loading="lazy"
-        width="800"
-        height="400"
+        width="1200"
+        height="600"
       />
+      <!-- Vignette interior -->
+      <div class="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.7)] pointer-events-none"></div>
       <!-- Overlay hover -->
       <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
         <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-neutral-900/80 text-brand-yellow text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-2">
