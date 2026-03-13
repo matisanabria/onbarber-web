@@ -1,0 +1,86 @@
+---
+const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+---
+
+<!-- Separador -->
+<div class="w-full px-6">
+  <div class="max-w-5xl mx-auto h-px bg-gradient-to-r from-transparent via-brand-yellow/20 to-transparent"></div>
+</div>
+
+<section id="ubicacion" class="relative px-6 py-16 md:py-24 overflow-hidden scroll-mt-20" aria-labelledby="ubicacion-titulo">
+
+  <!-- Background sutil -->
+  <div class="absolute inset-0 bg-neutral-900/40 pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand-yellow/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+    <!-- Texto -->
+    <div class="flex flex-col gap-6">
+      <header>
+        <h2 id="ubicacion-titulo" class="font-bebas font-bold text-3xl md:text-5xl lg:text-6xl text-white tracking-wider leading-none">
+          Dónde <span class="text-brand-yellow">encontrarnos</span>
+        </h2>
+        <p class="mt-4 text-gray-400 text-base md:text-lg leading-relaxed">
+          Estamos en el centro de Encarnación, en una ubicación fácil de encontrar. Pasá cuando quieras o reservá tu turno online.
+        </p>
+      </header>
+
+      <!-- Dirección -->
+      <div class="flex flex-col gap-4">
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 shrink-0 text-brand-yellow">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+          <div>
+            <p class="text-white font-medium">Antequera c/ Tomás Romero Pereira</p>
+            <p class="text-gray-400 text-sm">Encarnación, Paraguay</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <a
+        href="https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.8717119,18z/data=!4m6!3m5!1s0x945795a02d523f87:0xc882fdebf3d43038!8m2!3d-27.3318913!4d-55.8711766!16s%2Fg%2F11vbwppp6h?entry=tts&g_ep=EgoyMDI2MDMxMC4wIPu8ASoASAFQAw%3D%3D&skid=3eba348c-de3b-4748-a928-24ad94bf49ee"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-brand-yellow/70 text-sm font-medium hover:text-brand-yellow transition-colors duration-300 w-fit"
+      >
+        Abrir en Google Maps
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mapa -->
+    <a
+      href="https://maps.app.goo.gl/vWkKeUvQ6cSeLmkT7"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Ver OnBarber en Google Maps"
+      class="group relative block rounded-xl overflow-hidden border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.4)] aspect-video lg:aspect-auto lg:h-80"
+    >
+      <img
+        src={`https://maps.googleapis.com/maps/api/staticmap?center=-27.3318913,-55.8711766&zoom=17&size=800x400&scale=2&maptype=roadmap&markers=color:0xedb717%7C-27.3318913,-55.8711766&style=element:geometry%7Ccolor:0x212121&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x757575&style=element:labels.text.stroke%7Ccolor:0x212121&style=feature:road%7Celement:geometry%7Ccolor:0x383838&style=feature:road.highway%7Celement:geometry%7Ccolor:0x454545&style=feature:water%7Celement:geometry%7Ccolor:0x000000&key=${apiKey}`}
+        alt="Mapa de ubicación de OnBarber en Encarnación"
+        class="w-full h-full object-cover"
+        loading="lazy"
+        width="800"
+        height="400"
+      />
+      <!-- Overlay hover -->
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-neutral-900/80 text-brand-yellow text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-2">
+          Abrir en Google Maps
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </span>
+      </div>
+    </a>
+
+  </div>
+</section>

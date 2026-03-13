@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pb-32">
+
+    <div class="relative z-10 flex flex-col items-center text-center gap-4 max-w-lg">
+      <!-- Logo -->
+      <img
+        src="/on-logo.svg"
+        alt="OnBarber"
+        class="w-28 h-28 md:w-36 md:h-36 drop-shadow-[0_0_30px_rgba(0,0,0,0.6)] opacity-80"
+      />
+
+      <!-- 404 -->
+      <div>
+        <h1 class="font-inter font-black text-3xl md:text-4xl text-white tracking-wider mt-2">
+          Error <span class="text-brand-yellow">404.</span>
+        </h1>
+      </div>
+
+      <!-- Descripción -->
+      <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+        Página no encontrada.
+        <a href="/" class="flex text-gray-400 underline titems-center gap-2 hover:text-brand-yellow transition-colors">
+        Volver a página de inicio
+      </a>
+      </p>
+    </div>
+  </section>
+</Layout>
