@@ -7,12 +7,14 @@
 
   <div class="relative z-10 flex flex-col items-center text-center gap-8 max-w-4xl">
     <!-- Logo con glow -->
-    <div class="group cursor-pointer">
+    <div class="group">
       <img
+        id="hero-logo"
         src="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/on-logo.svg"
         alt="OnBarber"
         fetchpriority="high"
-        class="w-40 h-40 md:w-52 md:h-52 drop-shadow-[0_0_30px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_0_50px_rgba(237,183,23,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
+        draggable="false"
+        class="select-none w-40 h-40 md:w-52 md:h-52 drop-shadow-[0_0_30px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_0_50px_rgba(237,183,23,0.4)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
       />
     </div>
 
@@ -20,12 +22,12 @@
 
     <!-- Título -->
     <h1 class="font-bebas text-5xl font-bold md:text-7xl lg:text-8xl text-white tracking-wider leading-none">
-      Tu estilo<br />siempre <span class="text-brand-yellow">ON</span>
+      Tu estilo<br /> <span class="text-brand-yellow">siempre ON</span>
     </h1>
 
     <!-- Subtítulo -->
     <p class="text-gray-400 text-base md:text-lg max-w-md leading-relaxed">
-      Mensaje corto y atractivo que invite a los visitantes a reservar su turno.
+      Reservá tu turno en línea.<br> Sin esperas, sin complicaciones.
     </p>
 
     <!-- CTA -->
@@ -61,3 +63,13 @@
     </svg>
   </!--div-->
 </section>
+
+<script>
+  const logo = document.getElementById('hero-logo');
+  if (logo && window.matchMedia('(max-width: 1023px)').matches) {
+    logo.classList.add('scale-110', 'rotate-5');
+    setTimeout(() => {
+      logo.classList.remove('scale-110', 'rotate-5');
+    }, 1000);
+  }
+</script>

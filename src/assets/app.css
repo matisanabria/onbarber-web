@@ -42,6 +42,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/BebasNeueBold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
 @theme {
   --font-inter: 'Inter', sans-serif;
   --font-bebas: 'Bebas Neue', sans-serif;
