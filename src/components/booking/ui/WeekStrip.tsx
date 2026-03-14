@@ -83,7 +83,8 @@ export default function WeekStrip({ barberId, selectedDate, onSelect }: WeekStri
         </div>
       </div>
 
-      <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
+      {/* Mobile: grid 3 cols con botones rectangulares */}
+      <div className="grid grid-cols-3 gap-2 sm:hidden">
         {days.map((day) => {
           const dateStr = formatDate(day);
           const isAvailable = availableDates.includes(dateStr);
@@ -99,15 +100,46 @@ export default function WeekStrip({ barberId, selectedDate, onSelect }: WeekStri
               onClick={() => isAvailable && !isPast && onSelect(dateStr)}
               disabled={!isAvailable || isPast}
               className={cn(
-                "flex flex-col items-center py-2.5 sm:py-3 rounded-xl transition-colors",
+                "flex items-center justify-center gap-2 py-3.5 rounded-xl transition-colors",
                 isSelected && "bg-brand-yellow text-neutral-900 shadow-[0_0_12px_rgba(237,183,23,0.3)]",
                 !isSelected && isAvailable && !isPast && "bg-neutral-800 text-white active:bg-brand-yellow/20",
                 (!isAvailable || isPast) && "bg-neutral-800/30 text-neutral-600 cursor-not-allowed",
                 isToday && !isSelected && isAvailable && "ring-1 ring-brand-yellow/40"
               )}
             >
-              <span className="text-[11px] sm:text-xs font-medium leading-none">{dayName}</span>
-              <span className="text-base sm:text-lg font-bold mt-0.5">{dayNum}</span>
+              <span className="text-xs font-medium">{dayName}</span>
+              <span className="text-base font-bold">{dayNum}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Desktop: strip horizontal de 7 */}
+      <div className="hidden sm:grid grid-cols-7 gap-2">
+        {days.map((day) => {
+          const dateStr = formatDate(day);
+          const isAvailable = availableDates.includes(dateStr);
+          const isSelected = dateStr === selectedDate;
+          const isPast = day < today;
+          const isToday = formatDate(today) === dateStr;
+          const dayName = DAY_NAMES[day.getDay()];
+          const dayNum = day.getDate();
+
+          return (
+            <button
+              key={dateStr}
+              onClick={() => isAvailable && !isPast && onSelect(dateStr)}
+              disabled={!isAvailable || isPast}
+              className={cn(
+                "flex flex-col items-center py-3 rounded-xl transition-colors",
+                isSelected && "bg-brand-yellow text-neutral-900 shadow-[0_0_12px_rgba(237,183,23,0.3)]",
+                !isSelected && isAvailable && !isPast && "bg-neutral-800 text-white hover:bg-brand-yellow/10",
+                (!isAvailable || isPast) && "bg-neutral-800/30 text-neutral-600 cursor-not-allowed",
+                isToday && !isSelected && isAvailable && "ring-1 ring-brand-yellow/40"
+              )}
+            >
+              <span className="text-xs font-medium">{dayName}</span>
+              <span className="text-lg font-bold mt-0.5">{dayNum}</span>
             </button>
           );
         })}
