@@ -13,4 +13,4 @@ Disallow: /
 User-agent: CCBot
 Disallow: /
 
-Sitemap: https://www.onbarber.com.py/sitemap.xml
+Sitemap: https://onbarber.com.py/sitemap.xml
