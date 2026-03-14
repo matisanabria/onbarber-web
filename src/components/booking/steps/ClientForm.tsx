@@ -8,9 +8,11 @@ interface ClientFormProps {
   onChangePhone: (phone: string) => void;
   onSubmit: () => void;
   onBack: () => void;
+  submitting?: boolean;
+  error?: string | null;
 }
 
-export default function ClientForm({ name, phone, onChangeName, onChangePhone, onSubmit, onBack }: ClientFormProps) {
+export default function ClientForm({ name, phone, onChangeName, onChangePhone, onSubmit, onBack, submitting, error }: ClientFormProps) {
   const [errors, setErrors] = useState<{ name?: string; phone?: string }>({});
 
   function validate(): boolean {
@@ -35,6 +37,7 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
       <div className="flex items-center gap-3 mb-6">
         <button
           onClick={onBack}
+          disabled={submitting}
           className="w-8 h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white hover:bg-neutral-600 transition-colors"
         >
           &lt;
@@ -53,6 +56,7 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
             value={name}
             onChange={(e) => onChangeName(e.target.value)}
             placeholder="Tu nombre"
+            disabled={submitting}
             className={cn(
               "w-full px-4 py-3 rounded-xl bg-neutral-800 border text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
               errors.name ? "border-red-500" : "border-neutral-700"
@@ -71,6 +75,7 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
             value={phone}
             onChange={(e) => onChangePhone(e.target.value)}
             placeholder="0981123456"
+            disabled={submitting}
             className={cn(
               "w-full px-4 py-3 rounded-xl bg-neutral-800 border text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
               errors.phone ? "border-red-500" : "border-neutral-700"
@@ -79,11 +84,21 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
           {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
         </div>
 
+        {error && (
+          <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-2">
+            {error}
+          </p>
+        )}
+
         <button
           type="submit"
-          className="w-full py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg hover:brightness-110 transition-all"
+          disabled={submitting}
+          className={cn(
+            "w-full py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg transition-all",
+            submitting ? "opacity-60 cursor-not-allowed" : "hover:brightness-110"
+          )}
         >
-          Confirmar turno
+          {submitting ? "Reservando..." : "Confirmar turno"}
         </button>
       </form>
     </div>

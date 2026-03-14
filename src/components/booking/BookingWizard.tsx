@@ -1,6 +1,6 @@
 import { useReducer, useEffect, useState } from "react";
 import type { BookingState, BookingAction, Barber } from "./types";
-import { getBarbers } from "./lib/api";
+import { getBarbers, createAppointment } from "./lib/api";
 import StepIndicator from "./ui/StepIndicator";
 import BarberSelect from "./steps/BarberSelect";
 import DateSelect from "./steps/DateSelect";
@@ -43,10 +43,35 @@ function reducer(state: BookingState, action: BookingAction): BookingState {
 export default function BookingWizard() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [barbers, setBarbers] = useState<Barber[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     getBarbers().then(setBarbers);
   }, []);
+
+  async function handleConfirm() {
+    if (!state.barberId || !state.date || !state.time) return;
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const result = await createAppointment(
+      state.barberId,
+      state.date,
+      state.time,
+      state.clientName,
+      state.clientPhone
+    );
+
+    setSubmitting(false);
+
+    if (result.success) {
+      dispatch({ type: "CONFIRM" });
+    } else {
+      setSubmitError(result.error || "Error al reservar");
+    }
+  }
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -85,7 +110,9 @@ export default function BookingWizard() {
             phone={state.clientPhone}
             onChangeName={(name) => dispatch({ type: "SET_CLIENT_NAME", name })}
             onChangePhone={(phone) => dispatch({ type: "SET_CLIENT_PHONE", phone })}
-            onSubmit={() => dispatch({ type: "CONFIRM" })}
+            onSubmit={handleConfirm}
+            submitting={submitting}
+            error={submitError}
             onBack={() => dispatch({ type: "GO_TO_STEP", step: 3 })}
           />
         )}

@@ -1,6 +1,8 @@
 export interface Barber {
   id: number;
   name: string;
+  phone: string | null;
+  photo_url: string | null;
   active: boolean;
 }
 
