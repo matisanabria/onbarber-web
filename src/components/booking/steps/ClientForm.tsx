@@ -1,0 +1,91 @@
+import { useState } from "react";
+import { cn } from "../lib/cn";
+
+interface ClientFormProps {
+  name: string;
+  phone: string;
+  onChangeName: (name: string) => void;
+  onChangePhone: (phone: string) => void;
+  onSubmit: () => void;
+  onBack: () => void;
+}
+
+export default function ClientForm({ name, phone, onChangeName, onChangePhone, onSubmit, onBack }: ClientFormProps) {
+  const [errors, setErrors] = useState<{ name?: string; phone?: string }>({});
+
+  function validate(): boolean {
+    const newErrors: typeof errors = {};
+    if (name.trim().length < 2) {
+      newErrors.name = "Ingresá tu nombre (mínimo 2 caracteres)";
+    }
+    if (!/^09\d{8}$/.test(phone.replace(/\s/g, ""))) {
+      newErrors.phone = "Ingresá un número válido (ej: 0981123456)";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (validate()) onSubmit();
+  }
+
+  return (
+    <div>
+      <div className="flex items-center gap-3 mb-6">
+        <button
+          onClick={onBack}
+          className="w-8 h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white hover:bg-neutral-600 transition-colors"
+        >
+          &lt;
+        </button>
+        <h2 className="font-bebas text-2xl sm:text-3xl text-white">Tus datos</h2>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-5 max-w-md">
+        <div>
+          <label htmlFor="client-name" className="block text-sm font-medium text-neutral-300 mb-2">
+            Nombre
+          </label>
+          <input
+            id="client-name"
+            type="text"
+            value={name}
+            onChange={(e) => onChangeName(e.target.value)}
+            placeholder="Tu nombre"
+            className={cn(
+              "w-full px-4 py-3 rounded-xl bg-neutral-800 border text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
+              errors.name ? "border-red-500" : "border-neutral-700"
+            )}
+          />
+          {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+        </div>
+
+        <div>
+          <label htmlFor="client-phone" className="block text-sm font-medium text-neutral-300 mb-2">
+            Teléfono
+          </label>
+          <input
+            id="client-phone"
+            type="tel"
+            value={phone}
+            onChange={(e) => onChangePhone(e.target.value)}
+            placeholder="0981123456"
+            className={cn(
+              "w-full px-4 py-3 rounded-xl bg-neutral-800 border text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
+              errors.phone ? "border-red-500" : "border-neutral-700"
+            )}
+          />
+          {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg hover:brightness-110 transition-all"
+        >
+          Confirmar turno
+        </button>
+      </form>
+    </div>
+  );
+}
