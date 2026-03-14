@@ -8,28 +8,20 @@ export async function getBarbers(): Promise<Barber[]> {
   return res.json();
 }
 
-export async function getAvailableDates(
-  barberId: number,
+export function getAvailableDates(
+  _barberId: number,
   startDate: Date,
   endDate: Date
-): Promise<string[]> {
-  // Check each day in the range for available slots
-  const dates: string[] = [];
-  const current = new Date(startDate);
+): string[] {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const dates: string[] = [];
+  const current = new Date(startDate);
   while (current <= endDate) {
-    if (current >= today) {
-      const dateStr = formatDate(current);
-      try {
-        const slots = await getAvailableSlots(barberId, dateStr);
-        if (slots.some((s) => s.available)) {
-          dates.push(dateStr);
-        }
-      } catch {
-        // Skip days that fail
-      }
+    // Not Sunday (0) and not in the past
+    if (current.getDay() !== 0 && current >= today) {
+      dates.push(formatDate(current));
     }
     current.setDate(current.getDate() + 1);
   }

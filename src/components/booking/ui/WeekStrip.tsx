@@ -43,7 +43,7 @@ export default function WeekStrip({ barberId, selectedDate, onSelect }: WeekStri
   const todayMonday = getMonday(today);
 
   useEffect(() => {
-    getAvailableDates(barberId, weekStart, weekEnd).then(setAvailableDates);
+    setAvailableDates(getAvailableDates(barberId, weekStart, weekEnd));
   }, [barberId, weekStart.toISOString()]);
 
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
