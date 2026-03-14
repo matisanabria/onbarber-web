@@ -77,7 +77,7 @@ export default function BookingWizard() {
     <div className="max-w-2xl mx-auto">
       <StepIndicator currentStep={state.step} />
 
-      <div className="bg-gradient-to-br from-neutral-800/80 to-neutral-800/40 rounded-xl border border-neutral-700/60 backdrop-blur-sm p-6 sm:p-8 shadow-lg shadow-black/20">
+      <div className="bg-gradient-to-br from-neutral-800/80 to-neutral-800/40 rounded-xl border border-neutral-700/60 backdrop-blur-sm p-4 sm:p-8 shadow-lg shadow-black/20">
         {state.step === 1 && (
           <BarberSelect
             selectedId={state.barberId}

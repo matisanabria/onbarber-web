@@ -10,10 +10,10 @@ interface DateSelectProps {
 export default function DateSelect({ barberId, selectedDate, onSelect, onBack }: DateSelectProps) {
   return (
     <div>
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-5 sm:mb-6">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white hover:bg-neutral-600 transition-colors"
+          className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white active:bg-neutral-600 transition-colors shrink-0"
         >
           &lt;
         </button>

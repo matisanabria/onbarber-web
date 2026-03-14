@@ -55,60 +55,62 @@ export default function WeekStrip({ barberId, selectedDate, onSelect }: WeekStri
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-medium text-white">{monthLabel} {weekStart.getFullYear()}</h3>
-        {isCurrentWeek && (
-          <span className="text-sm text-brand-yellow bg-brand-yellow/10 px-2 py-0.5 rounded-full">Esta semana</span>
-        )}
+        <h3 className="text-base sm:text-lg font-medium text-white">{monthLabel} {weekStart.getFullYear()}</h3>
+        <div className="flex items-center gap-2">
+          {isCurrentWeek && (
+            <span className="text-xs sm:text-sm text-brand-yellow bg-brand-yellow/10 px-2 py-0.5 rounded-full">Esta semana</span>
+          )}
+          <div className="flex gap-1">
+            <button
+              onClick={() => canGoPrev && setWeekStart(addDays(weekStart, -7))}
+              disabled={!canGoPrev}
+              className={cn(
+                "w-9 h-9 flex items-center justify-center rounded-lg transition-colors",
+                canGoPrev
+                  ? "bg-neutral-700 text-white active:bg-neutral-600"
+                  : "bg-neutral-800 text-neutral-600 cursor-not-allowed"
+              )}
+            >
+              &lt;
+            </button>
+            <button
+              onClick={() => setWeekStart(addDays(weekStart, 7))}
+              className="w-9 h-9 flex items-center justify-center rounded-lg bg-neutral-700 text-white active:bg-neutral-600 transition-colors"
+            >
+              &gt;
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => canGoPrev && setWeekStart(addDays(weekStart, -7))}
-          disabled={!canGoPrev}
-          className={cn(
-            "w-8 h-8 flex items-center justify-center rounded-lg transition-colors shrink-0",
-            canGoPrev
-              ? "bg-neutral-700 text-white hover:bg-neutral-600"
-              : "bg-neutral-800 text-neutral-600 cursor-not-allowed"
-          )}
-        >
-          &lt;
-        </button>
+      <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
+        {days.map((day) => {
+          const dateStr = formatDate(day);
+          const isAvailable = availableDates.includes(dateStr);
+          const isSelected = dateStr === selectedDate;
+          const isPast = day < today;
+          const isToday = formatDate(today) === dateStr;
+          const dayName = DAY_NAMES[day.getDay()];
+          const dayNum = day.getDate();
 
-        <div className="flex gap-1 flex-1 justify-between">
-          {days.map((day) => {
-            const dateStr = formatDate(day);
-            const isAvailable = availableDates.includes(dateStr);
-            const isSelected = dateStr === selectedDate;
-            const isPast = day < today;
-            const dayName = DAY_NAMES[day.getDay()];
-            const dayNum = day.getDate();
-
-            return (
-              <button
-                key={dateStr}
-                onClick={() => isAvailable && !isPast && onSelect(dateStr)}
-                disabled={!isAvailable || isPast}
-                className={cn(
-                  "flex flex-col items-center py-2 px-1.5 sm:px-3 rounded-xl transition-colors min-w-0 flex-1",
-                  isSelected && "bg-brand-yellow text-neutral-900",
-                  !isSelected && isAvailable && !isPast && "bg-neutral-800 text-white hover:bg-brand-yellow/10 hover:border-brand-yellow/30 border border-transparent",
-                  (!isAvailable || isPast) && "bg-neutral-800/50 text-neutral-600 cursor-not-allowed"
-                )}
-              >
-                <span className="text-[10px] sm:text-xs font-medium">{dayName}</span>
-                <span className="text-sm sm:text-lg font-bold">{dayNum}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <button
-          onClick={() => setWeekStart(addDays(weekStart, 7))}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white hover:bg-neutral-600 transition-colors shrink-0"
-        >
-          &gt;
-        </button>
+          return (
+            <button
+              key={dateStr}
+              onClick={() => isAvailable && !isPast && onSelect(dateStr)}
+              disabled={!isAvailable || isPast}
+              className={cn(
+                "flex flex-col items-center py-2.5 sm:py-3 rounded-xl transition-colors",
+                isSelected && "bg-brand-yellow text-neutral-900 shadow-[0_0_12px_rgba(237,183,23,0.3)]",
+                !isSelected && isAvailable && !isPast && "bg-neutral-800 text-white active:bg-brand-yellow/20",
+                (!isAvailable || isPast) && "bg-neutral-800/30 text-neutral-600 cursor-not-allowed",
+                isToday && !isSelected && isAvailable && "ring-1 ring-brand-yellow/40"
+              )}
+            >
+              <span className="text-[11px] sm:text-xs font-medium leading-none">{dayName}</span>
+              <span className="text-base sm:text-lg font-bold mt-0.5">{dayNum}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

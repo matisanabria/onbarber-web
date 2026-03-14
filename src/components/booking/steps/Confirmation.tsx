@@ -42,32 +42,32 @@ export default function Confirmation({ state, barbers, onReset }: ConfirmationPr
 
   return (
     <div className="text-center">
-      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-yellow/20 flex items-center justify-center">
-        <span className="text-3xl text-brand-yellow">✓</span>
+      <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-brand-yellow/20 flex items-center justify-center">
+        <span className="text-2xl sm:text-3xl text-brand-yellow">✓</span>
       </div>
-      <p className="text-neutral-400 mb-8">Pendiente a confirmación</p>
+      <p className="text-neutral-400 text-sm sm:text-base mb-6 sm:mb-8">Pendiente a confirmación</p>
 
-      <div className="bg-neutral-800 rounded-xl border border-neutral-700 p-6 mb-8 text-left max-w-md mx-auto">
+      <div className="bg-neutral-800 rounded-xl border border-neutral-700 p-4 sm:p-6 mb-6 sm:mb-8 text-left">
         {details.map(({ label, value }) => (
-          <div key={label} className="flex justify-between py-2 border-b border-neutral-700 last:border-0">
-            <span className="text-neutral-400">{label}</span>
-            <span className="text-white font-medium">{value}</span>
+          <div key={label} className="flex justify-between py-2.5 sm:py-2 border-b border-neutral-700 last:border-0 gap-2">
+            <span className="text-neutral-400 text-sm shrink-0">{label}</span>
+            <span className="text-white font-medium text-sm text-right">{value}</span>
           </div>
         ))}
       </div>
 
-      <div className="space-y-3 max-w-md mx-auto">
+      <div className="space-y-3">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg hover:brightness-110 transition-all text-center"
+          className="block w-full py-4 sm:py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg active:scale-[0.98] transition-all text-center"
         >
           Confirmar por WhatsApp
         </a>
         <button
           onClick={onReset}
-          className="w-full py-3 rounded-xl bg-neutral-800 border border-neutral-700 text-white font-medium hover:bg-neutral-700 transition-colors"
+          className="w-full py-3 rounded-xl bg-neutral-800 border border-neutral-700 text-white font-medium active:bg-neutral-700 transition-colors"
         >
           Reservar otro turno
         </button>

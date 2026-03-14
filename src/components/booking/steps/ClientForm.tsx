@@ -38,14 +38,14 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
         <button
           onClick={onBack}
           disabled={submitting}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white hover:bg-neutral-600 transition-colors"
+          className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white active:bg-neutral-600 transition-colors shrink-0"
         >
           &lt;
         </button>
         <h2 className="font-bebas text-2xl sm:text-3xl text-white">Tus datos</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5 max-w-md">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
         <div>
           <label htmlFor="client-name" className="block text-sm font-medium text-neutral-300 mb-2">
             Nombre
@@ -57,8 +57,9 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
             onChange={(e) => onChangeName(e.target.value)}
             placeholder="Tu nombre"
             disabled={submitting}
+            autoComplete="name"
             className={cn(
-              "w-full px-4 py-3 rounded-xl bg-neutral-800 border text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
+              "w-full px-4 py-3.5 sm:py-3 rounded-xl bg-neutral-800 border text-base text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
               errors.name ? "border-red-500" : "border-neutral-700"
             )}
           />
@@ -76,8 +77,9 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
             onChange={(e) => onChangePhone(e.target.value)}
             placeholder="0981123456"
             disabled={submitting}
+            autoComplete="tel"
             className={cn(
-              "w-full px-4 py-3 rounded-xl bg-neutral-800 border text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
+              "w-full px-4 py-3.5 sm:py-3 rounded-xl bg-neutral-800 border text-base text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors",
               errors.phone ? "border-red-500" : "border-neutral-700"
             )}
           />
@@ -85,7 +87,7 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
         </div>
 
         {error && (
-          <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-2">
+          <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3">
             {error}
           </p>
         )}
@@ -94,8 +96,8 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
           type="submit"
           disabled={submitting}
           className={cn(
-            "w-full py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg transition-all",
-            submitting ? "opacity-60 cursor-not-allowed" : "hover:brightness-110"
+            "w-full py-4 sm:py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg transition-all",
+            submitting ? "opacity-60 cursor-not-allowed" : "active:scale-[0.98]"
           )}
         >
           {submitting ? "Reservando..." : "Confirmar turno"}

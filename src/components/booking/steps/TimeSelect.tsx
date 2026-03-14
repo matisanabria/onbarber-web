@@ -29,10 +29,9 @@ function groupByShift(slots: TimeSlot[]) {
 function formatDateLabel(date: string): string {
   const d = new Date(date + "T12:00:00");
   return d.toLocaleDateString("es-PY", {
-    weekday: "short",
+    weekday: "long",
     day: "numeric",
-    month: "short",
-    year: "numeric",
+    month: "long",
   });
 }
 
@@ -54,19 +53,19 @@ export default function TimeSelect({ barberId, date, selectedTime, onSelect, onB
   const renderGroup = (label: string, group: TimeSlot[]) => {
     if (group.length === 0) return null;
     return (
-      <div className="mb-6">
-        <h4 className="text-sm font-medium text-brand-yellow/70 mb-3">{label}</h4>
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-5 sm:mb-6">
+        <h4 className="text-xs sm:text-sm font-medium text-brand-yellow/70 mb-2.5 sm:mb-3 uppercase tracking-wider">{label}</h4>
+        <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-2">
           {group.map((slot) => (
             <button
               key={slot.time}
               onClick={() => slot.available && onSelect(slot.time)}
               disabled={!slot.available}
               className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                selectedTime === slot.time && "bg-brand-yellow text-neutral-900",
-                selectedTime !== slot.time && slot.available && "bg-neutral-800 text-white hover:bg-brand-yellow/10 hover:text-brand-yellow",
-                !slot.available && "bg-neutral-800/50 text-neutral-600 line-through cursor-not-allowed"
+                "py-2.5 sm:py-2 px-3 sm:px-4 rounded-xl sm:rounded-full text-sm font-medium transition-colors",
+                selectedTime === slot.time && "bg-brand-yellow text-neutral-900 shadow-[0_0_12px_rgba(237,183,23,0.3)]",
+                selectedTime !== slot.time && slot.available && "bg-neutral-800 text-white active:bg-brand-yellow/20",
+                !slot.available && "bg-neutral-800/30 text-neutral-600 line-through cursor-not-allowed"
               )}
             >
               {slot.time}
@@ -79,16 +78,16 @@ export default function TimeSelect({ barberId, date, selectedTime, onSelect, onB
 
   return (
     <div>
-      <div className="flex items-center gap-3 mb-2">
+      <div className="flex items-center gap-3 mb-1">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white hover:bg-neutral-600 transition-colors"
+          className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg bg-neutral-700 text-white active:bg-neutral-600 transition-colors shrink-0"
         >
           &lt;
         </button>
         <h2 className="font-bebas text-2xl sm:text-3xl text-white">Elegí el horario</h2>
       </div>
-      <p className="text-neutral-400 mb-6 ml-11">{formatDateLabel(date)}</p>
+      <p className="text-neutral-400 text-sm mb-5 sm:mb-6 ml-[52px] sm:ml-11 capitalize">{formatDateLabel(date)}</p>
 
       {loading ? (
         <div className="text-center py-8 text-neutral-400">Cargando horarios...</div>
@@ -97,7 +96,7 @@ export default function TimeSelect({ barberId, date, selectedTime, onSelect, onB
           <p className="text-neutral-400">No hay horarios disponibles para esta fecha.</p>
           <button
             onClick={onBack}
-            className="mt-4 text-brand-yellow hover:underline text-sm"
+            className="mt-4 text-brand-yellow active:underline text-sm font-medium"
           >
             Elegir otra fecha
           </button>
