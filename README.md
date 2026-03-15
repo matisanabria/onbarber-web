@@ -1,46 +1,39 @@
-# Astro Starter Kit: Basics
+# onbarber-web
 
-```sh
-npm create astro@latest -- --template basics
+Landing page for Onbarber, built with Astro, React, and Tailwind CSS v4. Includes a multi-step booking wizard connected to the Onbarber API.
+
+## Requirements
+
+- Node.js >= 22.12.0
+- pnpm >= 10.32.1
+
+## Setup
+
+```bash
+pnpm install
+cp .env.example .env
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server runs at `http://localhost:4321`.
 
-## 🚀 Project Structure
+Edit `.env` with your values:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```
+PUBLIC_API_URL=https://api.onbarber.com.py
+PUBLIC_WHATSAPP_NUMBER=595983168022
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Commands
 
-## 🧞 Commands
+| Command          | Description                       |
+| ---------------- | --------------------------------- |
+| `pnpm dev`       | Start local dev server            |
+| `pnpm build`     | Build for production to `./dist/` |
+| `pnpm preview`   | Preview the production build      |
 
-All commands are run from the root of the project, from a terminal:
+## Stack
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [Astro](https://astro.build) with React integration
+- [Tailwind CSS v4](https://tailwindcss.com)
+- Booking wizard with barber selection, date/time picking, and WhatsApp confirmation
