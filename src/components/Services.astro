@@ -1,16 +1,30 @@
 ---
+const R2 = 'https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev';
+
 const services = [
   {
     name: "Corte de Cabello",
     description: "Corte adaptado a tu estilo y tipo de cabello. Incluye asesoramiento básico.",
+    images: [
+      { src: `${R2}/gallery/corte1.webp`, alt: 'BuzzCut' },
+      { src: `${R2}/gallery/corte2.webp`, alt: 'Taper Fade Medio' }
+      //{ src: `${R2}/gallery/corte3.webp`, alt: 'Mohicano' },
+    ],
   },
   {
     name: "Barba",
     description: "Perfilado, retoque, degradado de barba, se trabaja según tu estilo y forma del rostro.",
+    images: [
+      { src: `${R2}/gallery/barba1.webp`, alt: 'Degradado de barba' },
+      { src: `${R2}/gallery/barba2.webp`, alt: 'Perfilado de barba' },
+    ],
   },
   {
     name: "Cejas",
     description: "Perfilado de ceja para eliminar excesos, mantiene una apariencia natural y prolija.",
+    images: [
+      { src: `${R2}/gallery/ceja1.webp`, alt: 'Diseño de cejas' },
+    ],
   },
 ];
 ---
@@ -39,20 +53,56 @@ const services = [
     </header>
 
     <ul class="grid grid-cols-1 md:grid-cols-3 gap-6" role="list">
-      {services.map((service) => (
+      {services.map((service, idx) => (
         <li>
           <article class="group flex flex-col bg-neutral-900 rounded-lg overflow-hidden border border-white/5 transition-all duration-500 hover:border-brand-yellow/15 hover:-translate-y-1">
-            <!-- Imagen placeholder -->
-            <!-- Minimum 640x480 -->
-            <div class="relative aspect-4/3 m-2 rounded-md overflow-hidden">
-              <img
-                src="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/gradient-placeholder.png"
-                alt=""
-                class="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-              />
+            <!-- Carousel de imágenes -->
+            <div class="relative m-2 rounded-md overflow-hidden" aria-roledescription="carousel" aria-label={`Fotos de ${service.name}`}>
+              <div class="embla-viewport overflow-hidden" data-carousel={idx}>
+                <div class="embla-container flex">
+                  {service.images.map((img, i) => (
+                    <div
+                      class="embla-slide min-w-0 flex-[0_0_100%]"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label={`${i + 1} de ${service.images.length}`}
+                    >
+                      <div class="relative aspect-4/3">
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          class="absolute inset-0 w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Flechas -->
+              <button
+                class="carousel-prev absolute top-1/2 left-1.5 -translate-y-1/2 z-10 w-7 h-7 flex items-center justify-center rounded-full bg-black/50 text-white/70 hover:text-brand-yellow hover:bg-black/70 transition-all duration-200 opacity-0 group-hover:opacity-100"
+                aria-label="Foto anterior"
+                data-prev={idx}
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                class="carousel-next absolute top-1/2 right-1.5 -translate-y-1/2 z-10 w-7 h-7 flex items-center justify-center rounded-full bg-black/50 text-white/70 hover:text-brand-yellow hover:bg-black/70 transition-all duration-200 opacity-0 group-hover:opacity-100"
+                aria-label="Siguiente foto"
+                data-next={idx}
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <!-- Dots -->
+              <div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5" data-dots={idx}></div>
             </div>
 
             <!-- Contenido -->
@@ -82,3 +132,55 @@ const services = [
     </ul>
   </div>
 </section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
+
+  document.querySelectorAll<HTMLElement>('.embla-viewport').forEach((viewport) => {
+    const idx = viewport.dataset.carousel;
+    const autoplay = Autoplay({ delay: 4000, stopOnInteraction: true });
+
+    const embla = EmblaCarousel(viewport, {
+      loop: true,
+      align: 'start',
+    }, [autoplay]);
+
+    // Arrows
+    const prev = document.querySelector<HTMLButtonElement>(`[data-prev="${idx}"]`);
+    const next = document.querySelector<HTMLButtonElement>(`[data-next="${idx}"]`);
+    prev?.addEventListener('click', () => embla.scrollPrev());
+    next?.addEventListener('click', () => embla.scrollNext());
+
+    // Dots
+    const dotsContainer = document.querySelector<HTMLElement>(`[data-dots="${idx}"]`);
+
+    function setupDots() {
+      if (!dotsContainer) return;
+      const scrollSnaps = embla.scrollSnapList();
+      dotsContainer.innerHTML = '';
+      scrollSnaps.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-white/40 transition-all duration-300';
+        dot.setAttribute('aria-label', `Ir a foto ${i + 1}`);
+        dot.addEventListener('click', () => embla.scrollTo(i));
+        dotsContainer.appendChild(dot);
+      });
+      updateDots();
+    }
+
+    function updateDots() {
+      if (!dotsContainer) return;
+      const selected = embla.selectedScrollSnap();
+      dotsContainer.querySelectorAll('button').forEach((dot, i) => {
+        dot.className = i === selected
+          ? 'w-4 h-1.5 rounded-full bg-brand-yellow transition-all duration-300'
+          : 'w-1.5 h-1.5 rounded-full bg-white/40 transition-all duration-300';
+      });
+    }
+
+    embla.on('init', setupDots);
+    embla.on('reInit', setupDots);
+    embla.on('select', updateDots);
+  });
+</script>
