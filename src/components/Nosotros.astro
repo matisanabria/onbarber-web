@@ -15,14 +15,17 @@
 
   <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-18 items-center">
 
-    <!-- Video -->
+    <!-- Imagen -->
     <div class="rounded-xl overflow-hidden border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.4)]">
-      <lite-youtube
-        videoid="dQw4w9WgXcQ"
-        videoplay="Reproducir"
-        videotitle="Conocé OnBarber"
-        style="background-image: url('https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg');"
-      ></lite-youtube>
+      <img
+        src="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/barber.webp"
+        alt="OnBarber barbería en Encarnación"
+        width="1280"
+        height="720"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-auto object-cover"
+      />
     </div>
 
     <!-- Texto -->
@@ -42,6 +45,3 @@
   </div>
 </section>
 
-<script>
-  import '@justinribeiro/lite-youtube';
-</script>
