@@ -10,7 +10,6 @@ export interface TimeSlot {
   time: string; // "HH:mm"
   available: boolean;
 }
-
 export interface Appointment {
   barberId: number;
   date: string; // "YYYY-MM-DD"
