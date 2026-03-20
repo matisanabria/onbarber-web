@@ -32,10 +32,10 @@ const services = [
 ];
 
 const combos = [
-  { name: "Corte Universitario", price: "40.000 Gs", popular: true },
+  { name: "Corte Universitario (Lunes a Jueves)", price: "40.000 Gs", popular: true },
   { name: "Corte + Ceja",  price: "60.000 Gs", popular: false  },
   { name: "Corte + Barba", price: "70.000 Gs", popular: false  },
-  {name : "Combo Completo (Corte + Barba + Ceja)", price: "75.000 Gs", popular: false },
+  {name : "Combo Completo (Corte + Barba + Ceja)", price: "80.000 Gs", popular: false },
 ];
 ---
 
@@ -160,9 +160,18 @@ const combos = [
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3" role="list">
         {combos.map((combo) => (
           <li>
-            <a href="/reservar" class={`flex items-center justify-between gap-4 bg-neutral-900 rounded-xl px-6 py-5 border transition-all duration-300 group/combo ${combo.popular ? 'border-brand-yellow/40 shadow-[0_0_15px_rgba(237,183,23,0.08)]' : 'border-white/5 hover:border-brand-yellow/20'}`}>
+            <a href="/reservar" class={`flex items-center justify-between gap-4 bg-neutral-900 rounded-xl px-6 py-5 border transition-all duration-300 group/combo h-full ${combo.popular ? 'border-brand-yellow/40 shadow-[0_0_15px_rgba(237,183,23,0.08)]' : 'border-white/5 hover:border-brand-yellow/20'}`}>
               <div class="flex items-center gap-3">
-                <span class="font-inter font-medium text-white tracking-wide group-hover/combo:text-brand-yellow transition-colors duration-300">{combo.name}</span>
+                <div class="flex flex-col">
+                  <span class="font-inter font-medium text-white tracking-wide group-hover/combo:text-brand-yellow transition-colors duration-300">
+                    {combo.name.replace(/\s*\(.*\)/, '')}
+                  </span>
+                  {combo.name.match(/\((.+)\)/) && (
+                    <span class="text-xs text-gray-500 font-inter mt-0.5">
+                      {combo.name.match(/\((.+)\)/)?.[1]}
+                    </span>
+                  )}
+                </div>
                 {combo.popular && (
                   <span class="text-xs font-inter font-bold uppercase tracking-widest text-neutral-900 bg-brand-yellow px-2.5 py-1 rounded-full animate-pulse">
                     Popular
