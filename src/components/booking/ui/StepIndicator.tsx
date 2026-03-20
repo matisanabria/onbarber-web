@@ -1,6 +1,6 @@
 import { cn } from "../lib/cn";
 
-const steps = ["Barbero", "Fecha", "Hora", "Datos", "Listo"];
+const steps = ["Barbero", "Fecha y Hora", "Datos", "Listo"];
 
 interface StepIndicatorProps {
   currentStep: number;

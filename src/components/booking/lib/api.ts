@@ -34,16 +34,16 @@ export async function getAvailableSlots(
 ): Promise<TimeSlot[]> {
   const res = await fetch(`${API}/api/barbers/${barberId}/slots?date=${date}`);
   if (!res.ok) return [];
-  const data: { slots: string[] } = await res.json();
+  const data: { slots: { time: string; available: boolean }[] } = await res.json();
 
-  // Filter out past times if date is today
+  // Mark past times as unavailable if date is today
   const now = new Date();
   const todayStr = formatDate(now);
   const currentTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
 
-  return data.slots.map((time) => ({
-    time,
-    available: date !== todayStr || time > currentTime,
+  return data.slots.map((slot) => ({
+    time: slot.time,
+    available: slot.available && (date !== todayStr || slot.time > currentTime),
   }));
 }
 

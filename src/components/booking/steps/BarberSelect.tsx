@@ -24,10 +24,16 @@ export default function BarberSelect({ selectedId, onSelect }: BarberSelectProps
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    getBarbers().then((data) => {
-      setBarbers(data);
-      setLoaded(true);
-    });
+    getBarbers()
+      .then((data) => {
+        setBarbers(data);
+      })
+      .catch((err) => {
+        console.error("Error cargando barberos:", err);
+      })
+      .finally(() => {
+        setLoaded(true);
+      });
   }, []);
 
   return (

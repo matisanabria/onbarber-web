@@ -19,7 +19,7 @@ export interface Appointment {
 }
 
 export interface BookingState {
-  step: 1 | 2 | 3 | 4 | 5;
+  step: 1 | 2 | 3 | 4;
   barberId: number | null;
   date: string | null;
   time: string | null;

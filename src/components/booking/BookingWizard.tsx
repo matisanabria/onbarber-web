@@ -3,15 +3,19 @@ import type { BookingState, BookingAction, Barber } from "./types";
 import { getBarbers, createAppointment } from "./lib/api";
 import StepIndicator from "./ui/StepIndicator";
 import BarberSelect from "./steps/BarberSelect";
-import DateSelect from "./steps/DateSelect";
-import TimeSelect from "./steps/TimeSelect";
+import DateTimeSelect from "./steps/DateTimeSelect";
 import ClientForm from "./steps/ClientForm";
 import Confirmation from "./steps/Confirmation";
+
+function todayStr(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
 
 const initialState: BookingState = {
   step: 1,
   barberId: null,
-  date: null,
+  date: todayStr(),
   time: null,
   clientName: "",
   clientPhone: "",
@@ -22,15 +26,15 @@ function reducer(state: BookingState, action: BookingAction): BookingState {
     case "SELECT_BARBER":
       return { ...state, barberId: action.barberId, step: 2 };
     case "SELECT_DATE":
-      return { ...state, date: action.date, step: 3 };
+      return { ...state, date: action.date, time: null };
     case "SELECT_TIME":
-      return { ...state, time: action.time, step: 4 };
+      return { ...state, time: action.time, step: 3 };
     case "SET_CLIENT_NAME":
       return { ...state, clientName: action.name };
     case "SET_CLIENT_PHONE":
       return { ...state, clientPhone: action.phone };
     case "CONFIRM":
-      return { ...state, step: 5 };
+      return { ...state, step: 4 };
     case "GO_TO_STEP":
       return { ...state, step: action.step };
     case "RESET":
@@ -86,25 +90,17 @@ export default function BookingWizard() {
         )}
 
         {state.step === 2 && state.barberId && (
-          <DateSelect
+          <DateTimeSelect
             barberId={state.barberId}
             selectedDate={state.date}
-            onSelect={(date) => dispatch({ type: "SELECT_DATE", date })}
+            selectedTime={state.time}
+            onSelectDate={(date) => dispatch({ type: "SELECT_DATE", date })}
+            onSelectTime={(time) => dispatch({ type: "SELECT_TIME", time })}
             onBack={() => dispatch({ type: "GO_TO_STEP", step: 1 })}
           />
         )}
 
-        {state.step === 3 && state.barberId && state.date && (
-          <TimeSelect
-            barberId={state.barberId}
-            date={state.date}
-            selectedTime={state.time}
-            onSelect={(time) => dispatch({ type: "SELECT_TIME", time })}
-            onBack={() => dispatch({ type: "GO_TO_STEP", step: 2 })}
-          />
-        )}
-
-        {state.step === 4 && (
+        {state.step === 3 && (
           <ClientForm
             name={state.clientName}
             phone={state.clientPhone}
@@ -113,11 +109,11 @@ export default function BookingWizard() {
             onSubmit={handleConfirm}
             submitting={submitting}
             error={submitError}
-            onBack={() => dispatch({ type: "GO_TO_STEP", step: 3 })}
+            onBack={() => dispatch({ type: "GO_TO_STEP", step: 2 })}
           />
         )}
 
-        {state.step === 5 && (
+        {state.step === 4 && (
           <Confirmation
             state={state}
             barbers={barbers}
