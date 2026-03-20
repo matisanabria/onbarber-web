@@ -18,16 +18,17 @@ const mapsUrl = "https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.87
     <!-- Texto -->
     <div class="flex flex-col gap-6 text-center lg:text-left items-center lg:items-start">
       <header>
-        <h2 id="ubicacion-titulo" class="font-bebas font-bold text-5xl md:text-5xl lg:text-6xl text-white tracking-wider leading-none">
+        <h2 id="ubicacion-titulo" class="font-bebas font-bold text-4xl md:text-5xl text-white tracking-wider leading-none">
           Dónde <span class="text-brand-yellow">encontrarnos</span>
         </h2>
         <p class="mt-4 text-gray-400 text-base md:text-lg leading-relaxed">
-          Estamos en el centro de Encarnación, en una ubicación fácil de encontrar. Pasá cuando quieras o reservá tu turno online.
+          Estamos en el centro de Encarnación, a menos de media cuadra de la Universidad Católica. Pasá cuando quieras o reservá tu turno online.
         </p>
       </header>
 
-      <!-- Dirección -->
+      <!-- Info -->
       <div class="flex flex-col gap-4">
+        <!-- Dirección -->
         <div class="flex items-start gap-3">
           <span class="mt-0.5 shrink-0 text-brand-yellow">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -39,6 +40,19 @@ const mapsUrl = "https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.87
             <p class="text-gray-400 text-sm">Encarnación, Paraguay</p>
           </div>
         </div>
+
+        <!-- Horario -->
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 shrink-0 text-brand-yellow">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+          <div>
+            <p class="text-white font-medium">Lunes a Sábado</p>
+            <p class="text-gray-400 text-sm">Reservas online disponibles</p>
+          </div>
+        </div>
       </div>
 
       <!-- CTA -->
@@ -46,12 +60,12 @@ const mapsUrl = "https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.87
         href={mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 text-brand-yellow/70 text-sm font-medium hover:text-brand-yellow transition-colors duration-300 w-fit"
+        class="inline-flex items-center justify-center gap-2 bg-white/5 text-gray-300 border border-white/10 font-inter font-medium text-sm px-6 py-3 rounded-full hover:bg-white/10 hover:text-white transition-all duration-300"
       >
-        Abrir en Google Maps
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
         </svg>
+        Abrir en Google Maps
       </a>
     </div>
 
@@ -61,7 +75,7 @@ const mapsUrl = "https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.87
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Ver OnBarber en Google Maps"
-      class="group relative block rounded-xl overflow-hidden border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.4)] aspect-video lg:aspect-auto lg:h-80"
+      class="group relative block rounded-lg overflow-hidden border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.4)] aspect-video lg:aspect-auto lg:h-80"
     >
       <img
         src="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/map.webp"
@@ -71,8 +85,6 @@ const mapsUrl = "https://www.google.com/maps/place/ON.Barber/@-27.3320252,-55.87
         width="1200"
         height="600"
       />
-      <!-- Vignette interior -->
-      
       <!-- Overlay hover -->
       <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
         <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-neutral-900/80 text-brand-yellow text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-2">
