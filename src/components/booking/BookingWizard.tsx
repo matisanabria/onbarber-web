@@ -24,7 +24,7 @@ const initialState: BookingState = {
 function reducer(state: BookingState, action: BookingAction): BookingState {
   switch (action.type) {
     case "SELECT_BARBER":
-      return { ...state, barberId: action.barberId, step: 2 };
+      return { ...state, barberId: action.barberId };
     case "SELECT_DATE":
       return { ...state, date: action.date, time: null };
     case "SELECT_TIME":
@@ -86,6 +86,7 @@ export default function BookingWizard() {
           <BarberSelect
             selectedId={state.barberId}
             onSelect={(id) => dispatch({ type: "SELECT_BARBER", barberId: id })}
+            onNext={() => dispatch({ type: "GO_TO_STEP", step: 2 })}
           />
         )}
 

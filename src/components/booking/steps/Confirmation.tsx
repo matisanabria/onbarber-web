@@ -61,13 +61,13 @@ export default function Confirmation({ state, barbers, onReset }: ConfirmationPr
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full py-4 sm:py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg active:scale-[0.98] transition-all text-center"
+          className="block w-full py-4 sm:py-3 rounded-full bg-brand-yellow text-neutral-900 font-bold text-lg active:scale-[0.98] transition-all text-center"
         >
           Confirmar por WhatsApp
         </a>
         <button
           onClick={onReset}
-          className="w-full py-3 rounded-xl bg-neutral-800 border border-neutral-700 text-white font-medium active:bg-neutral-700 transition-colors"
+          className="w-full py-3 rounded-full bg-neutral-800 border border-neutral-700 text-white font-medium active:bg-neutral-700 transition-colors"
         >
           Reservar otro turno
         </button>

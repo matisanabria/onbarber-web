@@ -96,7 +96,7 @@ export default function ClientForm({ name, phone, onChangeName, onChangePhone, o
           type="submit"
           disabled={submitting}
           className={cn(
-            "w-full py-4 sm:py-3 rounded-xl bg-brand-yellow text-neutral-900 font-bold text-lg transition-all",
+            "w-full py-4 sm:py-3 rounded-full bg-brand-yellow text-neutral-900 font-bold text-lg transition-all",
             submitting ? "opacity-60 cursor-not-allowed" : "active:scale-[0.98]"
           )}
         >
