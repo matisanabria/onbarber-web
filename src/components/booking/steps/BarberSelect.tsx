@@ -89,7 +89,7 @@ export default function BarberSelect({ selectedId, onSelect, onNext }: BarberSel
       <h2 className="font-bebas text-2xl sm:text-3xl text-white mb-4 sm:mb-6">Elegí tu barbero</h2>
 
       {/* Random barber banner */}
-      {loaded && barbers.length >= 2 && (
+      {/* {loaded && barbers.length >= 2 && (
         <button
           onClick={startRoulette}
           disabled={rouletteActive}
@@ -105,7 +105,7 @@ export default function BarberSelect({ selectedId, onSelect, onNext }: BarberSel
             Reservá con cualquiera →
           </span>
         </button>
-      )}
+      )} */}
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {!loaded ? (
