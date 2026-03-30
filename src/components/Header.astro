@@ -1,11 +1,11 @@
 ---
 
 ---
-<nav class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur-md shadow-md px-4 py-3">
+<nav class="sticky top-0 z-50 bg-neutral-900/80 backdrop-blur-md lg:shadow-md px-4 py-1.5 lg:py-2.5">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <!-- Logo -->
     <a href="/">
-      <img src="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/on-logo.svg" alt="Logo" class="h-13 w-13" loading="eager" />
+      <img src="https://pub-d4a51ea026f44dabb421b777eebd1025.r2.dev/on-logo.svg" alt="Logo" class="h-8 w-8 lg:h-11 lg:w-11" loading="eager" />
     </a>
 
     <!-- Links desktop -->
@@ -24,7 +24,7 @@
       </a></li>
     </ul>
 
-    <!-- Botón reservar (desktop) + hamburguesa (mobile) -->
+    <!-- CTA (desktop) + hamburguer (mobile) -->
     <div class="flex items-center gap-3">
       <a href="/reservar" class="hidden sm:block">
         <button class="font-inter font-bold text-sm px-5 py-2 rounded-full bg-brand-yellow text-neutral-900 hover:shadow-[0_0_20px_rgba(237,183,23,0.4)] hover:scale-105 active:scale-95 transition-all duration-300">
@@ -32,7 +32,7 @@
         </button>
       </a>
 
-      <!-- Hamburguesa mobile -->
+      <!-- Hamburguer mobile -->
       <button
         id="menu-toggle"
         class="lg:hidden p-2 text-gray-300 hover:text-white focus:outline-none"
@@ -48,10 +48,10 @@
     </div>
   </div>
 
-  <!-- Menú mobile -->
-  <div id="mobile-menu" class="lg:hidden mt-3 border-t border-gray-700 pt-3 grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="lg:hidden grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
     <div class="overflow-hidden">
-      <ul class="flex flex-col gap-1 text-sm font-medium text-gray-300 pb-2">
+      <ul class="flex flex-col gap-1 text-sm font-medium text-gray-300 pt-3 pb-2">
         <li><a href="/#servicios" class="flex items-center gap-2 px-3 py-2.5 rounded-lg hover:bg-neutral-800 hover:text-brand-yellow transition-colors duration-300">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
           Servicios
@@ -98,7 +98,7 @@
     }
   });
 
-  // Cerrar menú al hacer click en un link
+  // Close menu when clicking a link
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       isOpen = false;
